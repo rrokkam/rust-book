@@ -1,8 +1,16 @@
-fn main() {
-    let rect = (30, 50);
-    println!("Area = {}", area(rect));
+struct Rectangle {
+    width: u32,
+    height: u32,
 }
 
-fn area(rect: (u32, u32)) -> u32 {
-    rect.0 * rect.1
+fn main() {
+    let rect = Rectangle {
+        width: 30,
+        height: 50,
+    };
+    println!("Area = {}", area(&rect));
+}
+
+fn area(rect: &Rectangle) -> u32 {
+    rect.width * rect.height
 }
