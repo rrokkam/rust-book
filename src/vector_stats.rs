@@ -31,5 +31,8 @@ pub fn mode(array: &[i32]) -> i32 {
     for elem in array.iter() {
         *map.entry(*elem).or_insert(0) += 1;
     }
-    map.into_iter().max_by_key(|&(_, c)| c).unwrap().0
+    map.into_iter()
+        .max_by_key(|&(_, c)| c)
+        .map(|(elem, _)| elem)
+        .unwrap()
 }
