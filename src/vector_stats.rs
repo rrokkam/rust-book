@@ -31,13 +31,13 @@ pub fn mode(array: &[i32]) -> i32 {
     for elem in array.iter() {
         *map.entry(*elem).or_insert(0) += 1;
     }
-    let mut mode = 0;
-    let mut count = 0;
-    for (k, c) in map.iter() {
-        if *c > count {
-            mode = *k;
-            count = *c;
-        }
-    }
-    mode
+    map.iter()
+        .fold((0 as i32, 0 as u32), |acc, x| {
+            if *x.1 > acc.1 {
+                (*x.0, *x.1)
+            } else {
+                acc
+            }
+        })
+        .0
 }
