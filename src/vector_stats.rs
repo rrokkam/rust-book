@@ -19,16 +19,13 @@ impl Stats {
 }
 
 pub fn mean(array: &[i32]) -> f64 {
-    let mut total = 0;
-    for elem in array.iter() {
-        total += elem;
-    }
-    total as f64 / array.len() as f64 
+    let sum = array.iter().fold(0, |acc, elem| acc + elem);
+    sum as f64 / array.len() as f64
 }
 
 pub fn median(array: &[i32]) -> i32 {
     let a: &[i32] = array.clone();
-//    a.sort();
+    //    a.sort();
     a[a.len() / 2]
 }
 
