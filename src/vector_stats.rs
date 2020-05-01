@@ -1,4 +1,5 @@
 //use std::collections::HashMap;
+//use std::iter::Iterator;
 
 #[derive(Debug)]
 pub struct Stats {
@@ -19,12 +20,10 @@ impl Stats {
 
 pub fn mean(array: &[i32]) -> f64 {
     let mut total = 0;
-    let mut len = 0;
     for elem in array.iter() {
-        len += 1;
         total += elem;
     }
-    total as f64 / len as f64
+    total as f64 / array.len() as f64 
 }
 
 pub fn median(array: &[i32]) -> i32 {
