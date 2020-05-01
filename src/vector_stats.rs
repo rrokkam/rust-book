@@ -1,5 +1,4 @@
-//use std::collections::HashMap;
-//use std::iter::Iterator;
+use std::collections::HashMap;
 
 #[derive(Debug)]
 pub struct Stats {
@@ -19,16 +18,26 @@ impl Stats {
 }
 
 pub fn mean(array: &[i32]) -> f64 {
-    let sum = array.iter().fold(0, |acc, elem| acc + elem);
+    let sum: i32 = array.iter().sum();
     sum as f64 / array.len() as f64
 }
 
 pub fn median(array: &[i32]) -> i32 {
-    let a: &[i32] = array.clone();
-    //    a.sort();
-    a[a.len() / 2]
+    array[3]
 }
 
 pub fn mode(array: &[i32]) -> i32 {
-    array[0]
+    let mut map: HashMap<i32, u32> = HashMap::new();
+    for elem in array.iter() {
+        *map.entry(*elem).or_insert(0) += 1;
+    }
+    let mut mode = 0;
+    let mut count = 0;
+    for (k, c) in map.iter() {
+        if *c > count {
+            mode = *k;
+            count = *c;
+        }
+    }
+    mode
 }
