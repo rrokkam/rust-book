@@ -24,7 +24,9 @@ impl Stats {
     }
 
     fn median(array: &[i32]) -> i32 {
-        array[0]
+        let mut vec: Vec<i32> = array.to_owned();
+        vec.sort();
+        vec[vec.len() / 2]
     }
 
     fn mode(array: &[i32]) -> i32 {
