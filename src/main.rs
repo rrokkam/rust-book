@@ -1,4 +1,5 @@
 use std::{env, fs, process};
+use std::error::Error;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -7,8 +8,17 @@ fn main() {
         process::exit(1);
     });
 
+    if let Err(e) = run(config) {
+        println!("minigrep error: {}", e);
+        process::exit(1);
+    }
+}
+
+fn run(config: Config) -> Result<(), Box<dyn Error>>{
     let contents = fs::read_to_string(config.filename).expect("Couldn't read the file.");
     println!("{}", contents);
+
+    Ok(())
 }
 
 struct Config {
